@@ -1,6 +1,7 @@
 import os, time, sys, psutil
 
 from dijkstra import *
+from visualize import *
 
 t_start = 0
 
@@ -23,24 +24,38 @@ def menu():
                     inp = int(input("\nChoose a file (1-7):").strip().strip("."))
                     if inp == 1:
                         print("\nOpening graph_ADS2018_200.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_large_testdata\graph_ADS2018_200.txt"))
                     elif inp == 2:
                         print("\nOpening graph_ADS2018_300.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_large_testdata\graph_ADS2018_300.txt"))
                     elif inp == 3:
                         print("\nOpening graph_ADS2018_500.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_large_testdata\graph_ADS2018_500.txt"))
                     elif inp == 4:
                         print("\nOpening graph_ADS2018_750.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_large_testdata\graph_ADS2018_750.txt"))
                     elif inp == 5:
                         print("\nOpening graph_ADS2018_1000.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_large_testdata\graph_ADS2018_1000.txt"))
                     elif inp == 6:
                         print("\nOpening graph_ADS2018_1500.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_large_testdata\graph_ADS2018_1500.txt"))
                     elif inp == 7:
                         print("\nOpening graph_ADS2018_2000.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_large_testdata\graph_ADS2018_2000.txt"))
                     else:
                         print("\nThat input is not available.\n")
@@ -52,36 +67,58 @@ def menu():
                     inp = int(input("\nChoose a file (1-11):").strip().strip("."))
                     if inp == 1:
                         print("\nOpening graph_ADS2018_10_1.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_10_1.txt"))
                     elif inp == 2:
                         print("\nOpening graph_ADS2018_10_2.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_10_2.txt"))
                     elif inp == 3:
                         print("\nOpening graph_ADS2018_20.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_20.txt"))
                     elif inp == 4:
                         print("\nOpening graph_ADS2018_30.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_30.txt"))
                     elif inp == 5:
                         print("\nOpening graph_ADS2018_40.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_40.txt"))
                     elif inp == 6:
                         print("\nOpening graph_ADS2018_50.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_50.txt"))
                     elif inp == 7:
                         print("\nOpening graph_ADS2018_60.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_60.txt"))
                     elif inp == 8:
                         print("\nOpening graph_ADS2018_70.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_70.txt"))
                     elif inp == 9:
                         print("\nOpening graph_ADS2018_80.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_80.txt"))
                     elif inp == 10:
                         print("\nOpening graph_ADS2018_90.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_90.txt"))
                     elif inp == 11:
                         print("\nOpening graph_ADS2018_100.txt\n")
+                        print("The algorithm will execute after closing the visualization window.")
+                        time.sleep(4)
                         openandrun(os.path.abspath("graph_testdata\graph_ADS2018_100.txt"))
                     else:
                         print("\nThat input is not available.\n")
@@ -97,14 +134,22 @@ def menu():
             print("\nOnly input integers, please.\n")
 
 def openandrun(path):
-    timer("start")
     try:
         with open(path, "r") as f:
             destination, verticeamount = f.readline().split()
             g = Graph(int(destination))
+            gViz = GraphVisualization()
             for line in range(int(verticeamount)):
                 cityStart, cityEnd, roadHeight = f.readline().split()
                 add_edge(g, int(cityStart), int(cityEnd), int(roadHeight))
+                gViz.add_edgeViz(int(cityStart), int(cityEnd))
+            gViz.visualize()
+            print("\nStarting path finding in 3...")
+            time.sleep(1)
+            for count in reversed(range(1, 3)):
+                print("{}...".format(count))
+                time.sleep(1)
+            timer("start")
             dijkstra(g,1)
             print("\nPath from 1 to {} with the lowest peak height of a single road is:".format(int(destination)))
             print_path(g, int(destination))
