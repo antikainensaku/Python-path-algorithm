@@ -1,0 +1,26 @@
+Tietorakenteet ja Algoritmit 2021 kevät 
+Saku Antikainen, opiskelijanumero: 2636168
+
+Python loppytyön selostus:
+
+Ratkaisu:
+Ratkaisin ongelman muokkaamalla dijkstran algoritmiä niin, että
+reitin pituuden sijasta algoritmi katsoo eri polkujen maksimipainoa,
+ja valitsee polun jossa yksittäisen polun maksimipaino on mahd. pieni.
+Alkuperäisen Dikstran algoritmin sain kurssin esimerkkimateriaaleista,
+jota jälkeenpäin muokkasin toimivan ylläkuvatulla tavalla.
+
+Suorituskyky:
+Suoritusaikoja testisyötteillä:
+ADS2018_20.txt => 6.0 millisekuntia
+ADS2018_100.txt => 14.9 millisekuntia
+ADS2018_500.txt => 95.3 millisekuntia
+ADS2018_2000.txt => 1.80 sekuntia
+
+Aikakompleksisuus kyseiselle dikstran algoritmille on O(n^2), jossa n on
+solmujen (kaupunkien) määrä. Vertailemalla 2000 solmun testisyötteellä
+kulutettuun aikaan, saadaan 15 sekuntia kuluvaan testiin mahtumaan n.
+5800 solmua.
+
+
+
